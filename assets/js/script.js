@@ -5,7 +5,7 @@ var quizArray = [
     },
     {
         "question2" : "How to write and IF statement in JavaScript",
-        "answers" : ["if i = 0 then", "if(i == 0)", "if i = 0", "if i == 0 then"],
+        "answers" : ["if i = 0 then", "if(i == 0)", "if i = 0", "if i == 0 then"]
 
     },  
     {
@@ -26,17 +26,41 @@ var a1 = $("#a1");
 var a2 = $("#a2");
 var a3 = $("#a3");
 var a4 = $("#a4");
+var question = $("#question")
+var rightAnswer = 0;
 
-function firstQ() {
+function ques1() {
     a1.text(quizArray[0].answers[0])
     a2.text(quizArray[0].answers[1])
     a3.text(quizArray[0].answers[2])
     a4.text(quizArray[0].answers[3])
-
-    
+    question.text(quizArray[0].question1)
+    rightAnswer = 4;
 }
-
-
+function ques2() {
+    a1.text(quizArray[1].answers[0])
+    a2.text(quizArray[1].answers[1])
+    a3.text(quizArray[1].answers[2])
+    a4.text(quizArray[1].answers[3])
+    question.text(quizArray[1].question2)
+    rightAnswer = 2;
+}
+function ques3() {
+    a1.text(quizArray[2].answers[0])
+    a2.text(quizArray[2].answers[1])
+    a3.text(quizArray[2].answers[2])
+    a4.text(quizArray[2].answers[3])
+    question.text(quizArray[2].question3)
+    rightAnswer = 3;
+}
+function ques4() {
+    a1.text(quizArray[3].answers[0])
+    a2.text(quizArray[3].answers[1])
+    a3.text(quizArray[3].answers[2])
+    a4.text(quizArray[3].answers[3])
+    question.text(quizArray[3].question4)
+    rightAnswer = 3;
+}
 
 function startTimer() {
     timer = setInterval(function() {
@@ -48,33 +72,64 @@ function startTimer() {
             timeLeftEl.text("You lose")
             clearInterval(timer);
         }
+        console.log(timeLeft);
     }, 1000);
 }
 
-function userAnswer() {
-    if (click() === quizArray[0].answers[3]) {
-        timeLeft = 100;
+function checkAnswer() {
+    if (question == question.text(quizArray[0].question1)) {
+        ques2();
     }
-    else {
-        if(timeLeft > 0){
-            timeLeft -= 10;
-        }
-        else {
-            // gameOver();
-        }
-        // wrong();
+    else if (question == question.text(quizArray[1].question2)) {
+        ques3();
+    }
+    else if (question == question.text(quizArray[2].question3)) {
+        ques4();
     }
 }
 
+$("#a1").click(function() {
+    if (rightAnswer == 1) {
+        timeLeft += 10;
+        checkAnswer();
+    }
+    else {
+        timeLeft -= 10;
+    }
+});
+
+$("#a2").click(function() {
+    if (rightAnswer == 2) {
+        timeLeft += 10;
+        checkAnswer();
+    }
+    else {
+        timeLeft -= 10;
+    }
+});
+
+$("#a3").click(function() {
+    if (rightAnswer == 3) {
+        timeLeft += 10;
+        checkAnswer();
+    }
+    else {
+        timeLeft -= 10;
+    }
+});
+
+$("#a4").click(function() {
+    if (rightAnswer == 4) {
+        timeLeft += 10;
+        checkAnswer();
+    }
+    else {
+        timeLeft -= 10;
+    }
+});
 
 function run() {
     startTimer();
-    firstQ();
-    userAnswer();
+    ques1();
 }
 run();
-// a2.click(userAnswer);
-
-// a3.click(userAnswer);
-
-// a4.click(userAnswer);
