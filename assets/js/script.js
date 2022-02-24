@@ -1,20 +1,36 @@
 var quizArray = [
     {
-        "question1" : "Commonly used data types DO NOT include",
-        "answers" : ["numbers","string", "boolean", "alert"]
+        question : "Commonly used data types DO NOT include",
+        a: "numbers",
+        b: "string",
+        c: "boolean",
+        d:  "alert",
+        answer : 4
     },
     {
-        "question2" : "How to write and IF statement in JavaScript",
-        "answers" : ["if i = 0 then", "if(i == 0)", "if i = 0", "if i == 0 then"]
+        question : "How to write and IF statement in JavaScript",
+        a: "if i = 0 then",
+        b: "if(i == 0)",
+        c: "if i = 0",
+        d: "if i == 0 else",
+        answer : 2
 
     },  
     {
-        "question3" : "Which event occurs when the user clicks on an HTML element",
-        "answers" : ["onchange", "onmouseover", "onclick", "onmouseclick"]
+        question : "Which event occurs when the user clicks on an HTML element",
+        a: "onchange", 
+        b: "onmouseover",
+        c: "onclick", 
+        d: "onmouseclick",
+        answer : 3
     },
     {
-        "question4" : "Which operator is used to set a variable",
-        "answers" : ["==", "-", "=", "--"]
+        question : "Which operator is used to set a variable",
+        a: "==",
+        b: "-",
+        c: "=",
+        d: "--",
+        answer : 3
     }  
 ] 
 
@@ -22,45 +38,62 @@ var timeLeftEl = $("#time-left");
 var timeLeft = 60;
 var timer;
 
-var a1 = $("#a1");
-var a2 = $("#a2");
-var a3 = $("#a3");
-var a4 = $("#a4");
 var currentQuestion = $("#question")
-var rightAnswer = 0;
+var qNum = 0
 
-function ques1() {
-    a1.text(quizArray[0].answers[0])
-    a2.text(quizArray[0].answers[1])
-    a3.text(quizArray[0].answers[2])
-    a4.text(quizArray[0].answers[3])
-    currentQuestion.text(quizArray[0].question1)
-    rightAnswer = 4;
+function setQuestion() {
+    currentQuestion.text(quizArray[qNum].question);
+    rightAnswer = quizArray[qNum].answer;
+    $("#a1").text(quizArray[qNum].a)
+    $("#a2").text(quizArray[qNum].b)
+    $("#a3").text(quizArray[qNum].c)
+    $("#a4").text(quizArray[qNum].d)
 }
-function ques2() {
-    a1.text(quizArray[1].answers[0])
-    a2.text(quizArray[1].answers[1])
-    a3.text(quizArray[1].answers[2])
-    a4.text(quizArray[1].answers[3])
-    currentQuestion.text(quizArray[1].question2)
-    rightAnswer = 2;
-}
-function ques3() {
-    a1.text(quizArray[2].answers[0])
-    a2.text(quizArray[2].answers[1])
-    a3.text(quizArray[2].answers[2])
-    a4.text(quizArray[2].answers[3])
-    currentQuestion.text(quizArray[2].question3)
-    rightAnswer = 3;
-}
-function ques4() {
-    a1.text(quizArray[3].answers[0])
-    a2.text(quizArray[3].answers[1])
-    a3.text(quizArray[3].answers[2])
-    a4.text(quizArray[3].answers[3])
-    currentQuestion.text(quizArray[3].question4)
-    rightAnswer = 3;
-}
+
+$("#a1").click(function() {
+    var a1 = 1;
+    if (a1 == rightAnswer) {
+        timeLeft += 10;
+        qNum++;
+        setQuestion();
+    }
+    else {
+        timeLeft -= 5;
+    }
+});
+$("#a2").click(function() {
+    var a2 = 2;
+    if (a2 == rightAnswer) {
+        timeLeft += 10;
+        qNum++;
+        setQuestion();
+    }
+    else {
+        timeLeft -= 5;
+    }
+});
+$("#a3").click(function() {
+    var a3 = 3;
+    if (a3 == rightAnswer) {
+        timeLeft += 10;
+        qNum++;
+        setQuestion();
+    }
+    else {
+        timeLeft -= 5;
+    }
+});
+$("#a4").click(function() {
+    var a4 = 4
+    if (a4 == rightAnswer) {
+        timeLeft += 10;
+        qNum++;
+        setQuestion();
+    }
+    else {
+        timeLeft -= 5;
+    }
+});
 
 function startTimer() {
     timer = setInterval(function() {
@@ -76,62 +109,8 @@ function startTimer() {
     }, 1000);
 }
 
-function nextQuestion() {
-    if (currentQuestion == currentQuestion.text(quizArray[0].question1)) {
-        ques2();
-    }
-    else if (currentQuestion == currentQuestion.text(quizArray[1].question2)) {
-        ques3();
-    }
-    else {
-        ques4();
-    }
-}
-
-
-
-$("#a1").click(function() {
-    if (rightAnswer == 1) {
-        timeLeft += 10;
-        nextQuestion();
-    }
-    else {
-        timeLeft -= 10;
-    }
-});
-
-$("#a2").click(function() {
-    if (rightAnswer == 2) {
-        timeLeft += 10;
-        nextQuestion();
-    }
-    else {
-        timeLeft -= 10;
-    }
-});
-
-$("#a3").click(function() {
-    if (rightAnswer == 3) {
-        timeLeft += 10;
-        nextQuestion();
-    }
-    else {
-        timeLeft -= 10;
-    }
-});
-
-$("#a4").click(function() {
-    if (rightAnswer == 4) {
-        timeLeft += 10;
-        nextQuestion();
-    }
-    else {
-        timeLeft -= 10;
-    }
-});
-
 function run() {
     startTimer();
-    ques1();
+    setQuestion();
 }
 run();
