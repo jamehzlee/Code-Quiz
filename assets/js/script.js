@@ -26,7 +26,7 @@ var a1 = $("#a1");
 var a2 = $("#a2");
 var a3 = $("#a3");
 var a4 = $("#a4");
-var question = $("#question")
+var currentQuestion = $("#question")
 var rightAnswer = 0;
 
 function ques1() {
@@ -34,7 +34,7 @@ function ques1() {
     a2.text(quizArray[0].answers[1])
     a3.text(quizArray[0].answers[2])
     a4.text(quizArray[0].answers[3])
-    question.text(quizArray[0].question1)
+    currentQuestion.text(quizArray[0].question1)
     rightAnswer = 4;
 }
 function ques2() {
@@ -42,7 +42,7 @@ function ques2() {
     a2.text(quizArray[1].answers[1])
     a3.text(quizArray[1].answers[2])
     a4.text(quizArray[1].answers[3])
-    question.text(quizArray[1].question2)
+    currentQuestion.text(quizArray[1].question2)
     rightAnswer = 2;
 }
 function ques3() {
@@ -50,7 +50,7 @@ function ques3() {
     a2.text(quizArray[2].answers[1])
     a3.text(quizArray[2].answers[2])
     a4.text(quizArray[2].answers[3])
-    question.text(quizArray[2].question3)
+    currentQuestion.text(quizArray[2].question3)
     rightAnswer = 3;
 }
 function ques4() {
@@ -58,7 +58,7 @@ function ques4() {
     a2.text(quizArray[3].answers[1])
     a3.text(quizArray[3].answers[2])
     a4.text(quizArray[3].answers[3])
-    question.text(quizArray[3].question4)
+    currentQuestion.text(quizArray[3].question4)
     rightAnswer = 3;
 }
 
@@ -76,22 +76,24 @@ function startTimer() {
     }, 1000);
 }
 
-function checkAnswer() {
-    if (question == question.text(quizArray[0].question1)) {
+function nextQuestion() {
+    if (currentQuestion == currentQuestion.text(quizArray[0].question1)) {
         ques2();
     }
-    else if (question == question.text(quizArray[1].question2)) {
+    else if (currentQuestion == currentQuestion.text(quizArray[1].question2)) {
         ques3();
     }
-    else if (question == question.text(quizArray[2].question3)) {
+    else {
         ques4();
     }
 }
 
+
+
 $("#a1").click(function() {
     if (rightAnswer == 1) {
         timeLeft += 10;
-        checkAnswer();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -101,7 +103,7 @@ $("#a1").click(function() {
 $("#a2").click(function() {
     if (rightAnswer == 2) {
         timeLeft += 10;
-        checkAnswer();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -111,7 +113,7 @@ $("#a2").click(function() {
 $("#a3").click(function() {
     if (rightAnswer == 3) {
         timeLeft += 10;
-        checkAnswer();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -121,7 +123,7 @@ $("#a3").click(function() {
 $("#a4").click(function() {
     if (rightAnswer == 4) {
         timeLeft += 10;
-        checkAnswer();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
