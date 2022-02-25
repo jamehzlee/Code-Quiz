@@ -150,10 +150,11 @@ $("#highscore-link").click(function() {
     printLeaderboard();
     submitName();
 })
-//Goes back to beginning of the quiz
+//Event listener for "Go Back" button
 $("#go-back").click(function() {
-    reset();
+    beginning();
 })
+//
 $("#start-button").click(function() {
     reset();
     startGame();
@@ -171,6 +172,12 @@ function winGame() {
     victoryScreen();
 }
 
+function beginning() {
+    $("div:visible").hide();
+    $("#main-page:hidden").show();
+    $("#title:hidden").show();
+    $("#start-button:hidden").show();
+}
 //Resets global variables
 function reset() {
     qNum = 0;
