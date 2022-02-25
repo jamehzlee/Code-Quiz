@@ -1,6 +1,6 @@
 var quizArray = [
     {
-        question : "Commonly used data types DO NOT include",
+        question : "Commonly used data types DO NOT include:",
         a: "numbers",
         b: "string",
         c: "boolean",
@@ -8,7 +8,7 @@ var quizArray = [
         answer : 4
     },
     {
-        question : "How to write and IF statement in JavaScript",
+        question : "How to write and IF statement in JavaScript:",
         a: "if i = 0 then",
         b: "if(i == 0)",
         c: "if i = 0",
@@ -17,7 +17,7 @@ var quizArray = [
 
     },  
     {
-        question : "Which event occurs when the user clicks on an HTML element",
+        question : "Which event occurs when the user clicks on an HTML element?",
         a: "onchange", 
         b: "onmouseover",
         c: "onclick", 
@@ -25,7 +25,7 @@ var quizArray = [
         answer : 3
     },
     {
-        question : "Which operator is used to set a variable",
+        question : "Which operator is used to set a variable?",
         a: "==",
         b: "-",
         c: "=",
@@ -39,11 +39,13 @@ var timeLeft = 60;
 var timer;
 var choiceEl = $("#choice");
 var questionEl = $("#question")
+var rightAnswer = 0
 var qNum = 0
 var displayScoreEl = $("#display-score");
 var highscoreListItemEl = $("#highscore-item");
 var highscoreLinkEl = $("#highscore-link")
 var submitBtn = $("#submit");
+
 
 // Event listeners for multiple choice button clicks
 $("#a1").click(function() {
@@ -130,12 +132,13 @@ function nextQuestion() {
 }
 
 //Show user their score and allows them to record it
-function victory() {
+function victoryScreen() {
     $("div:visible").hide();
     $("#time-left:hidden").show();
     $("#done:hidden").show();
-    displayScoreEl.text("Your final score is " + timeLeft + "!");
     $("#name-form:hidden").show();
+    $("#name-input:hidden").show();
+    displayScoreEl.text("Your final score is " + timeLeft + "!");
 }
 function submitName() {
     var winner = $("#enter-name");
@@ -161,21 +164,25 @@ function printLeaderboard() {
     $("#highscore:hidden").show();
 }
 
+//Executes when user completes quiz
 function winGame() {
     clearInterval(timer);
     timeLeftEl.text(timeLeft);
-    victory();
+    victoryScreen();
 }
 
+//Resets global variables
 function reset() {
-    timeLeft = 60;
     qNum = 0;
+    timeLeft = 60;
     $("div:visible").hide();
     $("#time-left:hidden").show();
     $("#quiz:hidden").show();
     $("#question:hidden").show();
     $("#buttons:hidden").show();
+    nextQuestion();
 }
+//Starts Game
 function startGame() {
     reset();
     startTimer();

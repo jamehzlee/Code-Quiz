@@ -28,13 +28,13 @@
             </div>
         </div>
         
-        <div id="quiz" style="display: none;" class="align-self-center">
+        <div id="quiz" style="display: none;" class="align-self-center col-7 row-3">
 
             <!-- Quiz questions -->
-            <p id="question" class="h3 mb-3"></p>
+            <p id="question" class="h3 mb-2"></p>
             
             <!-- Multiple choice buttons -->
-            <div style="display: none;" id="buttons" class="align-self-center">
+            <div id="buttons" style="display: none;" class="p-2">
                 <ol>
                     <li class="m-2"><button id="a1"></button></li>
                     <li class="m-2"><button id="a2"></button></li>
@@ -48,17 +48,13 @@
         <div id="done" style="display: none;" class="col-5 align-self-center">
             <p>All Done!</p>
             <p id="display-score"></p>
-        </div>
-
-        <!-- Tells whether user's choice is correct or wrong -->
-        <div class="col-6 align-self-center">
             <p id="choice"></p>
         </div>
 
         <!-- Hidden "enter initials" field -->
         <div id="name-form" style ="display:none;" class="align-self-center">
             <form class="d-flex col-4 justify-content-center">
-                <div>
+                <div id="name-input" style="display: none;" class="">
                     <label id="enter-name">Enter initials: </label>
                     <input type="text">
                     <button class="submit">Submit</button>
