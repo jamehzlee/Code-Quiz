@@ -38,19 +38,21 @@ var timeLeftEl = $("#time-left");
 var timeLeft = 60;
 var timer;
 var choiceEl = $("#choice");
-var currentQuestionEl = $("#question")
+var questionEl = $("#question")
 var qNum = 0
 var displayScoreEl = $("#display-score");
 var highscoreListItemEl = $("#highscore-item");
 var highscoreLinkEl = $("#highscore-link")
+var submitBtn = $("#submit");
 
+// Event listeners for multiple choice button clicks
 $("#a1").click(function() {
     var a1 = 1;
     if (a1 == rightAnswer) {
         timeLeft += 3;
         choiceEl.text("Correct!");
         qNum++;
-        setQuestion();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -63,7 +65,7 @@ $("#a2").click(function() {
         timeLeft += 3;
         choiceEl.text("Correct!");
         qNum++;
-        setQuestion();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -76,7 +78,7 @@ $("#a3").click(function() {
         timeLeft += 3;
         choiceEl.text("Correct!");
         qNum++;
-        setQuestion();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -89,7 +91,7 @@ $("#a4").click(function() {
         timeLeft += 3;
         choiceEl.text("Correct!");
         qNum++;
-        setQuestion();
+        nextQuestion();
     }
     else {
         timeLeft -= 10;
@@ -97,6 +99,7 @@ $("#a4").click(function() {
     }
 });
 
+// Starts timer
 function startTimer() {
     timer = setInterval(function() {
         if (timeLeft > 0) {
@@ -111,9 +114,10 @@ function startTimer() {
     }, 1000);
 }
 
-function setQuestion() {
+//Displays next multiple choice question
+function nextQuestion() {
     if (qNum < 4) {   
-        currentQuestionEl.text(quizArray[qNum].question);
+        questionEl.text(quizArray[qNum].question);
         rightAnswer = quizArray[qNum].answer;
         $("#a1").text(quizArray[qNum].a)
         $("#a2").text(quizArray[qNum].b)
@@ -125,15 +129,12 @@ function setQuestion() {
     }
 }
 
-function finalScore() {
-    displayScoreEl.text("Your final score is " + timeLeft + "!");
-}
-
-function writeName() {
+//Show user their score and allows them to record it
+function victory() {
     $("div:visible").hide();
     $("#time-left:hidden").show();
     $("#done:hidden").show();
-    finalScore();
+    displayScoreEl.text("Your final score is " + timeLeft + "!");
     $("#name-form:hidden").show();
 }
 function submitName() {
@@ -141,13 +142,18 @@ function submitName() {
     highscoreListItemEl.append($("<li>").text(winner));
 }
 
+//Event listener for clicking "View Highscore" to display highscores
 $("#highscore-link").click(function() {
     printLeaderboard();
     submitName();
 })
+//Goes back to beginning of the quiz
 $("#go-back").click(function() {
     reset();
-    run();
+})
+$("#start-button").click(function() {
+    reset();
+    startGame();
 })
 function printLeaderboard() {
     $("div:visible").hide();
@@ -157,22 +163,21 @@ function printLeaderboard() {
 
 function winGame() {
     clearInterval(timer);
-    writeName();
-}
-
-function enterName() {
-    $("#highscore-item").append("<li>");
+    timeLeftEl.text(timeLeft);
+    victory();
 }
 
 function reset() {
-    $("div:visible").hide();
-    $("#time-left:hidden").show();
     timeLeft = 60;
     qNum = 0;
-    rightAnswer = 4;
+    $("div:visible").hide();
+    $("#time-left:hidden").show();
+    $("#quiz:hidden").show();
+    $("#question:hidden").show();
+    $("#buttons:hidden").show();
 }
-function run() {
+function startGame() {
+    reset();
     startTimer();
-    setQuestion();
+    nextQuestion();
 }
-// run();
