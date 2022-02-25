@@ -12,29 +12,49 @@
 <body class="bg-dark text-light ">
     <header class="">
         <div class="d-flex flex-row justify-content-between h4 mx-1 mt-1">
+            <!-- Shows highscores -->
             <a id="highscore" class="mr-auto" href="">View Highscores</a>
+            <!-- Timer -->
             <p class="mr-1">Time left:</p>
             <div id="time-left" class="">60</div>
         </div>
     </header>
 
     <main class="d-flex flex-column justify-content-center">
-        <div class="col-6 align-self-center text-left h4">
-            <p id="question"></p>
+        <div id="quiz" style="display:visible" class="col-6 align-self-center">
+
+            <!-- Quiz questions -->
+            <div class="text-left h4">
+                <p id="question"></p>
+            </div>
+            
+            <!-- Multiple choice buttons -->
+            <div id="buttons" class="col-6 align-self-center">
+                <ol>
+                    <li class="m-2"><button id="a1"></button></li>
+                    <li class="m-2"><button id="a2"></button></li>
+                    <li class="m-2"><button id="a3"></button></li>
+                    <li class="m-2"><button id="a4"></button></li>
+                </ol>
+            </div>
         </div>
-        
-        <div id="buttons" class="col-6 align-self-center">
-            <ol>
-                <li class="m-2"><button id="a1"></button></li>
-                <li class="m-2"><button id="a2"></button></li>
-                <li class="m-2"><button id="a3"></button></li>
-                <li class="m-2"><button id="a4"></button></li>
-            </ol>
+
+        <!-- Displays score, end of quiz -->
+        <div style="" class="col-5 align-self-center">
+            <p>All Done!</p>
+            <p id="displayScore"></p>
         </div>
-        
-        <div>
-            <form class="d-flex justify-content-center ">
-                <div style ="display:none">
+
+        <!-- Tells whether user's choice is correct or wrong -->
+        <div class="col-6 align-self-center">
+            <hr>
+            <p id="choice"></p>
+        </div>
+
+        <!-- Hidden "enter initials" field -->
+        <div id="enter-name" style ="display:none" class="align-self-center">
+            <form class="d-flex col-4 justify-content-center ">
+                <div>
                     <label>Enter initials: </label>
                     <input>
                 </div>
