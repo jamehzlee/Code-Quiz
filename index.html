@@ -53,21 +53,19 @@
 
         <!-- Hidden "enter initials" field -->
         <div id="name-form" style ="display:none;" class="align-self-center">
-            <form class="d-flex col-4 justify-content-center">
+            <form id="highscore-form" class="d-flex col-4 justify-content-center">
                 <div id="name-input" style="display: none;" class="">
                     
                     <!-- Takes user's initials and records it to highscores -->
                     <label id="enter-name">Enter initials: </label>
-                    <input type="text">
-                    <button class="submit">Submit</button>
+                    <input type="text" name="nameInput" placeholder="Initials" required />
+                    <button type="submit">Submit</button>
                 </div>
             </form>
         </div>
 
-        <div id="highscore" style="display: none;" class="justify-content-center">
-            <ol id="highscore-item" class="align-self-center">
-                <li class="">asdasdasd</li>
-            </ol>
+        <div id="highscore" style="display: none;" class=" align-self-center col-3">
+            <ol id="highscore-item" class="align-self-center"></ol>
             <!-- Goes back to beginning of the quiz -->
             <button id="go-back">Go Back</button>
         </div>

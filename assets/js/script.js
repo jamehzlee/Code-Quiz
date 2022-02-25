@@ -38,13 +38,14 @@ var timeLeftEl = $("#time-left");
 var timeLeft = 60;
 var timer;
 var choiceEl = $("#choice");
-var questionEl = $("#question")
-var rightAnswer = 0
-var qNum = 0
+var questionEl = $("#question");
+var rightAnswer = 0;
+var qNum = 0;
 var displayScoreEl = $("#display-score");
 var highscoreListItemEl = $("#highscore-item");
-var highscoreLinkEl = $("#highscore-link")
-var submitBtn = $("#submit");
+var highscoreLinkEl = $("#highscore-link");
+var highscoreFormEl = $("#highscore-form");
+var nameInputEl = $("#nameInput");
 
 
 // Event listeners for multiple choice button clicks
@@ -101,6 +102,21 @@ $("#a4").click(function() {
     }
 });
 
+//Event listener for clicking "View Highscore" to display highscores
+$("#highscore-link").click(function() {
+    printLeaderboard();
+})
+
+//Event listener for "Go Back" button
+$("#go-back").click(function() {
+    beginning();
+})
+//
+$("#start-button").click(function() {
+    reset();
+    startGame();
+})
+
 // Starts timer
 function startTimer() {
     timer = setInterval(function() {
@@ -121,10 +137,10 @@ function nextQuestion() {
     if (qNum < 4) {   
         questionEl.text(quizArray[qNum].question);
         rightAnswer = quizArray[qNum].answer;
-        $("#a1").text(quizArray[qNum].a)
-        $("#a2").text(quizArray[qNum].b)
-        $("#a3").text(quizArray[qNum].c)
-        $("#a4").text(quizArray[qNum].d)
+        $("#a1").text(quizArray[qNum].a);
+        $("#a2").text(quizArray[qNum].b);
+        $("#a3").text(quizArray[qNum].c);
+        $("#a4").text(quizArray[qNum].d);
     }
     else {
         winGame();
@@ -140,30 +156,19 @@ function victoryScreen() {
     $("#name-input:hidden").show();
     displayScoreEl.text("Your final score is " + timeLeft + "!");
 }
-function submitName() {
-    var winner = $("#enter-name");
-    highscoreListItemEl.append($("<li>").text(winner));
-}
 
-//Event listener for clicking "View Highscore" to display highscores
-$("#highscore-link").click(function() {
-    printLeaderboard();
-    submitName();
-})
-//Event listener for "Go Back" button
-$("#go-back").click(function() {
-    beginning();
-})
-//
-$("#start-button").click(function() {
-    reset();
-    startGame();
-})
+
 function printLeaderboard() {
     $("div:visible").hide();
     $("#time-left:hidden").show(); 
     $("#highscore:hidden").show();
 }
+
+$("form").submit(function(event) {
+    event.preventDefault();
+    highscoreListItemEl.append($("<li>").text(nameInputEl.val()));
+})
+
 
 //Executes when user completes quiz
 function winGame() {
