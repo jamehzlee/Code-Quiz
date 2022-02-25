@@ -3,6 +3,7 @@ button {
     border-radius: 10px;
     border-color: black;
     color: beige;
+    min-width: 100px;
 }
 
 button:hover {

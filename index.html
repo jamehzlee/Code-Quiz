@@ -13,7 +13,7 @@
     <header class="">
         <div class="d-flex flex-row justify-content-between h4 mx-1 mt-1">
             <!-- Shows highscores -->
-            <a id="highscore" class="mr-auto" href="">View Highscores</a>
+            <a id="highscore-link" class="mr-auto" href="#">View Highscores</a>
             <!-- Timer -->
             <p class="mr-1">Time left:</p>
             <div id="time-left" class="">60</div>
@@ -40,25 +40,32 @@
         </div>
 
         <!-- Displays score, end of quiz -->
-        <div style="" class="col-5 align-self-center">
+        <div id="done" style="display: none;" class="col-5 align-self-center">
             <p>All Done!</p>
-            <p id="displayScore"></p>
+            <p id="display-score"></p>
         </div>
 
         <!-- Tells whether user's choice is correct or wrong -->
         <div class="col-6 align-self-center">
-            <hr>
             <p id="choice"></p>
         </div>
 
         <!-- Hidden "enter initials" field -->
-        <div id="enter-name" style ="display:none" class="align-self-center">
-            <form class="d-flex col-4 justify-content-center ">
+        <div id="name-form" style ="display:none" class="align-self-center">
+            <form class="d-flex col-4 justify-content-center">
                 <div>
-                    <label>Enter initials: </label>
-                    <input>
+                    <label id="enter-name">Enter initials: </label>
+                    <input type="text">
+                    <button>Submit</button>
                 </div>
             </form>
+        </div>
+
+        <div id="highscore" style="display: none;" class="justify-content-center">
+            <ol id="highscore-item" class="align-self-center">
+                <li class="">asdasdasd</li>
+            </ol>
+            <button id="go-back">Go Back</button>
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
